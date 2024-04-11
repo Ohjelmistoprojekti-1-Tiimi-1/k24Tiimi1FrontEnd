@@ -5,10 +5,20 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Menu from "./components/Menu"
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-export const asetukset = {
+export const settings = {
+  palette: {
+   
+    primary: {
+      main: "#000000", contrastText: "#FFFFFF",
+    },
+    secondary: {
+      main: "#000000",
+    },
+  },
+  typography: { fontFamily: "'Open Sans', sans-serif" }
 };
 
-const theme = createTheme(asetukset);
+const theme = createTheme(settings);
 
 const router = createBrowserRouter([
   {

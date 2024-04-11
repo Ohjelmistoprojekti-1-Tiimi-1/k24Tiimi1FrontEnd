@@ -20,7 +20,7 @@ function Menu () {
                     onChange={muuta}
                     variant="fullWidth"
                 >
-                    <Tab component={Link} label="Front Page" to="/" icon={<HomeIcon />}></Tab>
+                    <Tab component={Link} label="PetShop" to="/" icon={<HomeIcon />}></Tab>
                 </Tabs>
             </AppBar>
            <Outlet/>

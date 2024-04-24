@@ -1,13 +1,16 @@
-
-import {CssBaseline } from '@mui/material'
-import FrontPage from './components/FrontPage'
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Menu from "./components/Menu"
+import { AppBar, Box, Tab, Tabs } from "@mui/material";
+import { CssBaseline } from '@mui/material'
+import { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Link, Outlet } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from '@mui/icons-material/Info';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import BeenhereIcon from '@mui/icons-material/Beenhere';
 
 export const settings = {
   palette: {
-   
+
     primary: {
       main: "#000000", contrastText: "#FFFFFF",
     },
@@ -20,26 +23,35 @@ export const settings = {
 
 const theme = createTheme(settings);
 
-const router = createBrowserRouter([
-  {
-    element: <Menu></Menu>,
-    children: [
-      {
-        path:"/",
-        element:<FrontPage ></FrontPage>
-      },
-      
-    ]
-  }
-])
 function App() {
-  
+  const [aktiivinen, setAktiivinen] = useState(0);
 
+  const muuta = (event, arvo) => {
+      setAktiivinen(arvo);
+  };
 
   return (
     <ThemeProvider theme={theme}>
-    <CssBaseline/>
-    <RouterProvider router={router}></RouterProvider>
+      <CssBaseline />
+      <Box>
+            <AppBar position="static">
+                <Tabs
+                    color="inherit"
+                    value={aktiivinen}
+                    centered
+                    textColor="inherit"
+                    onChange={muuta}
+                    variant="fullWidth"
+                >
+                    <Tab component={Link} label="PetShop" to="/" icon={<HomeIcon />}></Tab>
+                    <Tab component={Link} label="Products" to="/products" icon={<LocalMallIcon />}></Tab>
+                    <Tab component={Link} label="Reservations" to="/reservations" icon={<BeenhereIcon />}></Tab>
+                    <Tab component={Link} label="About" to="/about" icon={<InfoIcon />}></Tab>
+                </Tabs>
+            </AppBar>
+           <Outlet/>
+     
+        </Box>
     </ThemeProvider>
   )
 }

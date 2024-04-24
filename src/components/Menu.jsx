@@ -1,5 +1,5 @@
 import { AppBar, Box, Tab, Tabs } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 
@@ -21,6 +21,9 @@ function Menu () {
                     variant="fullWidth"
                 >
                     <Tab component={Link} label="PetShop" to="/" icon={<HomeIcon />}></Tab>
+                    <Tab component={Link} label="Products" to="/products" icon={<HomeIcon />}></Tab>
+                    <Tab component={Link} label="Reservations" to="/reservations" icon={<HomeIcon />}></Tab>
+                    <Tab component={Link} label="About" to="/about" icon={<HomeIcon />}></Tab>
                 </Tabs>
             </AppBar>
            <Outlet/>

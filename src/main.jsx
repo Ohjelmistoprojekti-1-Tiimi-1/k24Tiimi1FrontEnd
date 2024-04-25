@@ -1,13 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import MainApp from './App.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import MainApp from './App.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Error from './components/Error.jsx'
-import About from './components/About.jsx'
+import Error from './components/Error.jsx';
+import About from './components/About.jsx';
 import Products from './components/Products.jsx';
-import FrontPage from './components/FrontPage.jsx'
-import Reservations from './components/Reservations.jsx'
-import Login from './components/Login.jsx'
+import FrontPage from './components/FrontPage.jsx';
+import Reservations from './components/Reservations.jsx';
+import Login from './components/Login.jsx';
 
 const router = createBrowserRouter([
   {

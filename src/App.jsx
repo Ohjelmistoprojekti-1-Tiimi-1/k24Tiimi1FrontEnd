@@ -1,5 +1,5 @@
 import { AppBar, Box, Tab, Tabs } from "@mui/material";
-import { CssBaseline } from '@mui/material'
+import { CssBaseline } from '@mui/material';
 import { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Link, Outlet } from "react-router-dom";

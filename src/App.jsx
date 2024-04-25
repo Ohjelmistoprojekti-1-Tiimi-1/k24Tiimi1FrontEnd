@@ -7,6 +7,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from '@mui/icons-material/Info';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const settings = {
   palette: {
@@ -47,6 +48,7 @@ function App() {
                     <Tab component={Link} label="Products" to="/products" icon={<LocalMallIcon />}></Tab>
                     <Tab component={Link} label="Reservations" to="/reservations" icon={<BeenhereIcon />}></Tab>
                     <Tab component={Link} label="About" to="/about" icon={<InfoIcon />}></Tab>
+                    <Tab component={Link} label="Login" to="/login" icon={<AccountCircleIcon />}></Tab>
                 </Tabs>
             </AppBar>
            <Outlet/>

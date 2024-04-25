@@ -7,6 +7,7 @@ import About from './components/About.jsx'
 import Products from './components/Products.jsx';
 import FrontPage from './components/FrontPage.jsx'
 import Reservations from './components/Reservations.jsx'
+import Login from './components/Login.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <Products />,
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
     ]
   }

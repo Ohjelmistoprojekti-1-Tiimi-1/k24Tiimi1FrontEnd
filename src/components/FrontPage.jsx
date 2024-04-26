@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { fetchProducts } from "../petshopapi";
+import ProductCatalog from "./ProductCatalog.jsx"
 import { Typography } from "@mui/material";
-import Box from '@mui/material/Box';
 //import { fetchIndividualProducts } from "../petshopapi";
 
 
@@ -13,28 +14,16 @@ function FrontPage() {
         handleFetch();
     }, []);
 
-    //this should probably be in petshopapi.js?
-    const fetchIndividualProducts = () => {
-        return fetch(import.meta.env.VITE_API_PRODUCTS + "/")
-            .then(response => {
-                if (!response.ok)
-                    throw new Error("Error in fetch: " + response.statusText);
-    
-                return response.json();
-            })
-    }
-
     const handleFetch = () => {
-        fetchIndividualProducts()
+        fetchProducts()
             .then(data => setProducts(data._embedded.products))
             .catch(err => console.error(err))
-    };
+    }
 
     return (
         <>
-            <Box component="section" sx={{ p: 2, border: '1px solid black' }}>
-                Add some example products here as boxes
-            </Box>
+        <Typography sx={{margin: "2em"}}>There products are on 50% sale just now!</Typography>
+            <ProductCatalog products= {products.slice(0,3)}></ProductCatalog>
         </>
     );
 }

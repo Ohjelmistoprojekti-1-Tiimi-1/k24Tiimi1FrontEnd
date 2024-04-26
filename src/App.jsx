@@ -1,7 +1,7 @@
-import { AppBar, Box, Tab, Tabs } from "@mui/material";
-import { CssBaseline } from '@mui/material';
-import { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { CssBaseline } from '@mui/material';
+import { AppBar, Box, Tab, Tabs } from "@mui/material";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from '@mui/icons-material/Info';

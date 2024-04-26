@@ -15,7 +15,7 @@ function FrontPage() {
 
     //this should probably be in petshopapi.js?
     const fetchIndividualProducts = () => {
-        return fetch(import.meta.env.VITE_API_PRODUCTS + "/" + id)
+        return fetch(import.meta.env.VITE_API_PRODUCTS + "/")
             .then(response => {
                 if (!response.ok)
                     throw new Error("Error in fetch: " + response.statusText);

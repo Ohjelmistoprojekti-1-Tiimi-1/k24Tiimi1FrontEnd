@@ -35,11 +35,11 @@ export default function Login() {
             setSignups({ username: "", password: "" });
         }
     };
+    
 
     const loginFetch = async () => {
         try {
             const response = await fetch(import.meta.env.VITE_API_LOGIN, {
-                mode: "cors",
                 method: "post",
                 headers: {
                   'Content-Type': 'application/json',
@@ -48,8 +48,11 @@ export default function Login() {
             });
             const token = response.headers.get('Authorization');
             document.cookie = `jwt=${token}`;
-            const text = await response.json()
-            setMessage(text.message)
+            if(response.status == 200) {
+              setMessage("Login succesful!");
+            } else {
+              setMessage("Wrong username or password");
+            }
         } catch (e) {
             setMessage(e.message);
         }

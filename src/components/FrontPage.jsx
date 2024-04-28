@@ -22,7 +22,7 @@ function FrontPage() {
 
     return (
         <>
-        <Typography sx={{margin: "2em"}}>There products are on 50% sale just now!</Typography>
+        <Typography sx={{margin: "2em"}}>These products are on 50% sale just now!</Typography>
             <ProductCatalog products= {products.slice(0,3)}></ProductCatalog>
         </>
     );

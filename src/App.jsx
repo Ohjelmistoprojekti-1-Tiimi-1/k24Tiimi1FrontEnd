@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from '@mui/icons-material/Info';
+import FactoryIcon from '@mui/icons-material/Factory';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -46,6 +47,7 @@ function App() {
                 >
                     <Tab component={Link} label="PetShop" to="/" icon={<HomeIcon />}></Tab>
                     <Tab component={Link} label="Products" to="/products" icon={<LocalMallIcon />}></Tab>
+                    <Tab component={Link} label="Manufacturers" to="/manufactorer" icon={<FactoryIcon />}></Tab>
                     <Tab component={Link} label="Reservations" to="/reservations" icon={<BeenhereIcon />}></Tab>
                     <Tab component={Link} label="About" to="/about" icon={<InfoIcon />}></Tab>
                     <Tab component={Link} label="Login" to="/login" icon={<AccountCircleIcon />}></Tab>

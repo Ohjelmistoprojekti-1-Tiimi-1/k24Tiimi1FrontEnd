@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { Stack, Button } from "@mui/material";
@@ -24,6 +24,13 @@ export default function Login() {
   // state, joka jäljittää, ollaanko logattu sisään vai ei sekä sitä, kuka on logannut
   const [loggedin, setLoggedin] = useState(null);
 
+  useEffect(() => {
+    if (sessionStorage.getItem("jwt")) {
+      setMessage("Login successful!");
+      setLoggedin(true);
+    }
+  }, []);
+
   const handleLoginClick = () => {
     console.log("handleLoginClick");
     if (logins.username && logins.password) {
@@ -45,6 +52,7 @@ export default function Login() {
     const handleLogoutClick = () => {
       setMessage("Logged out successfully.");
       setLoggedin(false);
+      sessionStorage.removeItem("jwt")
     };
     if (loggedin) {
       return (

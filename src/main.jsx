@@ -8,7 +8,7 @@ import Products from './components/Products.jsx';
 import FrontPage from './components/FrontPage.jsx';
 import Reservations from './components/Reservations.jsx';
 import Login from './components/Login.jsx';
-import Manufacturer from './components/Manufactorer.jsx';
+import Manufacturer from './components/Manufacturers.jsx';
 
 const router = createBrowserRouter([
   {

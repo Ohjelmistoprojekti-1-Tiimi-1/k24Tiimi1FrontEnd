@@ -47,7 +47,7 @@ function App() {
                 >
                     <Tab component={Link} label="PetShop" to="/" icon={<HomeIcon />}></Tab>
                     <Tab component={Link} label="Products" to="/products" icon={<LocalMallIcon />}></Tab>
-                    <Tab component={Link} label="Manufacturers" to="/manufactorer" icon={<FactoryIcon />}></Tab>
+                    <Tab component={Link} label="Manufacturers" to="/manufacturers" icon={<FactoryIcon />}></Tab>
                     <Tab component={Link} label="Reservations" to="/reservations" icon={<BeenhereIcon />}></Tab>
                     <Tab component={Link} label="About" to="/about" icon={<InfoIcon />}></Tab>
                     <Tab component={Link} label="Login" to="/login" icon={<AccountCircleIcon />}></Tab>

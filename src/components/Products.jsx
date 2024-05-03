@@ -17,8 +17,8 @@ export default function Products() {
         { field: 'color', filter: true, width: 100 },
         { field: 'size', filter: true, width: 100 },
         { field: 'price', filter: true, width: 100 },
-        { field: 'manufacturer.name', filter: true, width: 150 },
-        { field: 'productType.productTypeValue', filter: true, width: 150 },
+        { field: 'manufacturer.name', filter: true, width: 160, headerName: "Manufacturer" },
+        { field: 'productType.productTypeValue', filter: true, width: 160, headerName: "Type" },
         {
           cellRenderer: params =>
               <Button size="small" onClick={() => handleReserve()}>Reserve</Button>, width: 120

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { AgGridReact } from 'ag-grid-react';
-import { fetchProducts } from "../petshopapi";
+import { fetchProductsWithInfo } from "../petshopapi";
+import { Button } from "@mui/material";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
+
+//Something about this or petshopapi.js or .env file breaks FrontPage.jsx view of products.
 
 export default function Products() {
 
@@ -14,17 +17,25 @@ export default function Products() {
         { field: 'color', filter: true, width: 100 },
         { field: 'size', filter: true, width: 100 },
         { field: 'price', filter: true, width: 100 },
-        { field: 'manufacturer', filter: true, width: 150 },
-        { field: 'productType', filter: true, width: 150 },
+        { field: 'manufacturer.name', filter: true, width: 150 },
+        { field: 'productType.productTypeValue', filter: true, width: 150 },
+        {
+          cellRenderer: params =>
+              <Button size="small" onClick={() => handleReserve()}>Reserve</Button>, width: 120
+      }
     ]);
+
+    const handleReserve = {
+      //TODO create reserving functionality
+    }
 
     useEffect(() => {
         handleFetch();
     }, []);
 
     const handleFetch = () => {
-        fetchProducts()
-            .then(data => setProducts(data._embedded.products))
+        fetchProductsWithInfo()
+            .then(data => setProducts(data))
             .catch(err => console.error(err))
     }
 

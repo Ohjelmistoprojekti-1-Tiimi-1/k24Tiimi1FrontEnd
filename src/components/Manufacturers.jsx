@@ -1,40 +1,57 @@
-import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import ProductCatalog from "./ProductCatalog.jsx"
+import { fetchManufacturers } from "../petshopapi.js";
+
+import { Box, Typography, Stack, Card, CardActionArea, CardContent, CardActions, Button } from "@mui/material";
+
+import ManufacturerElement from "./ManufacturerElement.jsx";
 
 
-function Manufacturer({manufacturerId}) {
-    const [manufacturer, setManufacturer] = useState({});
-    const [products, setProducts] = useState([{}]);
+const Manufacturer = () => {
+    const [manufacturers, setManufacturers] = useState([]);
+    const [manufacturer, setManufacturer] = useState();
+
 
     useEffect(() => {
-        async function doFetch() {
-            const response1 = await fetch(
-                `${import.meta.env.VITE_API_MANUFACTURERS}/${manufacturerId}`
-            );
-            const json1 = await response1.json();
-            setManufacturer(json1);
-
-            const response2 = await fetch(
-                `${import.meta.env.VITE_API_MANUFACTURERS}/${manufacturerId}/products`
-            );
-            const json2 = await response2.json();
-            const products = json2._embedded.products;
-            setProducts(products);
-        }
-        doFetch();
+        handleFetch();
     }, []);
+
+    const handleFetch = () => {
+        fetchManufacturers()
+            .then(data => setManufacturers(data._embedded.manufacturers))
+            .catch(err => console.error(err));
+    };
 
     return (
         <Box>
-            <Typography sx={{margin:"2em", fontSize:"2em"}}> {manufacturer.name}</Typography>
-            <Typography sx={{margin:"2em"}}>Country: {manufacturer.country}</Typography>
-            <Typography sx={{margin:"2em"}}>Company ID: {manufacturer.businessIdentityCode}</Typography>
 
-            <Typography sx={{margin:"2em"}}>Selaa tuottajan tuotteita:</Typography>
-            <ProductCatalog products={products}></ProductCatalog>
-            
+            <Stack direction="row" spacing={2} mt={2} alignItems="center">
+                {manufacturers.map(manufacturer => {
+                    return (
+                        <Card sx={{ maxWidth: 345 }} key={manufacturer._links.manufacturer.href} onClick={() => setManufacturer(manufacturer)}>
+                            <CardActionArea>
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        {manufacturer.name}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Lizards are a widespread group of squamate reptiles, with over 6,000
+                                        species, ranging across all continents except Antarctica
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    );
+                })}
+            </Stack>
+
+            {manufacturer &&
+                <ManufacturerElement manufacturer={manufacturer} />
+            }
+
+
+
         </Box>
     );
-}
+};
+
 export default Manufacturer;

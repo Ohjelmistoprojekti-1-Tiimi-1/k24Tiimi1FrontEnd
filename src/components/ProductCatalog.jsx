@@ -1,5 +1,7 @@
 import {CardContent, CardHeader, Card, Box, Grid, IconButton, Typography } from "@mui/material"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
+
 function ProductCatalog (props) {
 
   

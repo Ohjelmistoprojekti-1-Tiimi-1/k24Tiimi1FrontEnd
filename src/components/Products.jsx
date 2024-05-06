@@ -25,7 +25,7 @@ export default function Products() {
         //      <Button size="small" onClick={() => handleReserve()}>Reserve</Button>, width: 120
         //}
         { cellRenderer: params =>
-        < IconButton >
+        < IconButton onClick={() => handleReserve()}>
             <AddShoppingCartIcon />
         </IconButton >
         }

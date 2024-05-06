@@ -19,8 +19,11 @@ function FrontPage() {
 
     return (
         <>
-        <Typography sx={{margin: "2em"}}>These products are on 50% sale just now!</Typography>
-            <ProductCatalog products= {products.slice(0,3)}></ProductCatalog>
+            <Typography variant="h2" sx={{ p: 2 }}>
+                Welcome to PetShop!
+            </Typography>
+            <Typography sx={{ margin: "2em" }}>These products are -50% off right now!</Typography>
+            <ProductCatalog products={products.slice(0, 3)}></ProductCatalog>
         </>
     );
 }

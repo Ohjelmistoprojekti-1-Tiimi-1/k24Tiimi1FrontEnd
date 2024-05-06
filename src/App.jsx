@@ -3,7 +3,7 @@ import { CssBaseline } from '@mui/material';
 import { AppBar, Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
+import PetsIcon from '@mui/icons-material/Pets';
 import InfoIcon from '@mui/icons-material/Info';
 import FactoryIcon from '@mui/icons-material/Factory';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
@@ -14,7 +14,7 @@ export const settings = {
   palette: {
 
     primary: {
-      main: "#000000", contrastText: "#FFFFFF",
+      main: "#23a627", contrastText: "#FFFFFF",
     },
     secondary: {
       main: "#000000",
@@ -45,7 +45,7 @@ function App() {
                     onChange={muuta}
                     variant="fullWidth"
                 >
-                    <Tab component={Link} label="PetShop" to="/" icon={<HomeIcon />}></Tab>
+                    <Tab component={Link} label="PetShop" to="/" icon={<PetsIcon />}></Tab>
                     <Tab component={Link} label="Products" to="/products" icon={<LocalMallIcon />}></Tab>
                     <Tab component={Link} label="Manufacturers" to="/manufacturers" icon={<FactoryIcon />}></Tab>
                     <Tab component={Link} label="Reservations" to="/reservations" icon={<BeenhereIcon />}></Tab>

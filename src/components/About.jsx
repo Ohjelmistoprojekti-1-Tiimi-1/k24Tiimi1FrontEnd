@@ -6,7 +6,7 @@ export default function About() {
   return (
     <>
       <Typography variant="h2" sx={{ p: 2 }}>
-        Our Story
+        Our story
       </Typography>
       <Stack direction="row" sx={{ pl: 2 }} spacing={3}>
         <Stack direction="column">
@@ -37,7 +37,7 @@ export default function About() {
             and tail wags one accessory at a time. Welcome to PetShop,
             where every pet is family.
           </p>
-          <Typography variant="h4">Company Details:</Typography>
+          <Typography variant="h4">Company details:</Typography>
           <p>Founding year: 2001</p>
           <p>Business Identity Code: 7180283-6</p>
         </Stack>

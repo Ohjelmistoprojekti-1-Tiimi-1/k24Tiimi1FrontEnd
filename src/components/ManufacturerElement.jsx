@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchManufacturerProducts } from "../petshopapi";
 
-import { Typography, Button } from "@mui/material";
-import { AgGridReact } from 'ag-grid-react'; 
-import "ag-grid-community/styles/ag-grid.css"; 
-import "ag-grid-community/styles/ag-theme-material.css"; 
+import { Typography, IconButton } from "@mui/material";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { AgGridReact } from 'ag-grid-react';
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-material.css";
 
 
 const ManufacturerElement = ({ manufacturer }) => {
@@ -16,9 +17,11 @@ const ManufacturerElement = ({ manufacturer }) => {
         { field: 'price', filter: true, width: 100 },
         { field: 'productType.productTypeValue', filter: true, width: 160, headerName: "Type" },
         {
-          cellRenderer: params =>
-              <Button size="small" onClick={() => handleReserve()}>Reserve</Button>, width: 120
-      }
+            cellRenderer: params =>
+                < IconButton onClick={() => handleReserve()} >
+                    <AddShoppingCartIcon />
+                </IconButton >
+        }
     ]);
 
     useEffect(() => {
@@ -34,7 +37,7 @@ const ManufacturerElement = ({ manufacturer }) => {
 
     const handleReserve = {
         //TODO create reserving functionality
-      }
+    }
 
 
     return (

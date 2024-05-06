@@ -1,17 +1,17 @@
-import {CardContent, CardHeader, Card, Box, Grid, IconButton, Typography } from "@mui/material"
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { CardContent, CardHeader, Card, Box, Grid, IconButton, Typography } from "@mui/material"
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 
-function ProductCatalog (props) {
+function ProductCatalog(props) {
 
-  
+
     return (
         <Box>
-            <Grid  container spacing={2} sx={{ marginTop: 1, marginLeft: 1 }}>
-            {props.products.map((product, index) => {
-                return <Box key={product.productId+"_"+index}><ProductCard  product = {product}></ProductCard></Box>;
-            })}
-        </Grid>
+            <Grid container spacing={2} sx={{ marginTop: 1, marginLeft: 1 }}>
+                {props.products.map((product, index) => {
+                    return <Box key={product.productId + "_" + index}><ProductCard product={product}></ProductCard></Box>;
+                })}
+            </Grid>
         </Box>
     )
 
@@ -21,7 +21,7 @@ function ProductCard(
     props
 ) {
     return (
-        <Card sx={{ margin: "2em", width: 230  }}>
+        <Card sx={{ margin: "2em", width: 230 }}>
             <CardHeader subheader={props.product.name}></CardHeader>
             {/**
             <CardMedia
@@ -33,9 +33,9 @@ function ProductCard(
             */}
             <CardContent>
                 <Typography>{props.product.manufacturer}</Typography>
-                <IconButton>
-                    <ShoppingCartIcon />
-                </IconButton>
+                < IconButton >
+                    <AddShoppingCartIcon />
+                </IconButton >
             </CardContent>
         </Card>
     );

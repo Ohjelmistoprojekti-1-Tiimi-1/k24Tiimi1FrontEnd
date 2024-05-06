@@ -11,11 +11,11 @@ export default function About() {
       <Stack direction="row" sx={{ pl: 2 }} spacing={3}>
         <Stack direction="column">
           <p>
-            Welcome to the whimsical world of Omppu and Rane, where tails wag,
+            Welcome to the whimsical world of PetShop, where tails wag,
             whiskers twitch, and every pet is celebrated as family.
           </p>
           <p>
-            Our journey began with a shared passion for furry friends and a
+            Omppu's and Rane's journey began in 2001 with a shared passion for furry friends and a
             desire to enhance their lives with thoughtfully crafted accessories.
             Omppu and Rane, the dynamic duo behind the scenes, poured their
             hearts into creating a haven for pets and their devoted humans
@@ -31,17 +31,17 @@ export default function About() {
           <p>
             But our story does not end with the products we offer. At Omppu and
             Rane, we believe in the power of community and the joy of shared
-            experiences. That is why we strive to foster a vibrant online space
+            experiences. That is why for over 20 years, we have strived to foster a vibrant online space
             where pet lovers can connect, share stories, and find inspiration.
             Join us on our adventure as we continue to spread love, laughter,
-            and tail wags one accessory at a time. Welcome to Omppu and Rane,
+            and tail wags one accessory at a time. Welcome to PetShop,
             where every pet is family.
           </p>
           <Typography variant="h4">Company Details:</Typography>
           <p>Founding year: 2001</p>
           <p>Business Identity Code: 7180283-6</p>
         </Stack>
-        <Box>
+        <Box sx={{ p: 2 }}>
           <img src={kuva} />
         </Box>
       </Stack>

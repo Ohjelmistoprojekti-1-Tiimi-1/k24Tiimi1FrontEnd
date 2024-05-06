@@ -21,13 +21,9 @@ export default function Login() {
   // viesti joka tiedottaa, onnistuiko logini vai ei
   const [message, setMessage] = useState("");
 
-  // state, joka jäljittää, ollaanko logattu sisään vai ei sekä sitä, kuka on logannut
-  const [loggedin, setLoggedin] = useState(null);
-
   useEffect(() => {
     if (sessionStorage.getItem("jwt")) {
       setMessage("Login successful!");
-      setLoggedin(true);
     }
   }, []);
 
@@ -51,10 +47,10 @@ export default function Login() {
   function LogoutButton() {
     const handleLogoutClick = () => {
       setMessage("Logged out successfully.");
-      setLoggedin(false);
-      sessionStorage.removeItem("jwt")
+
+      sessionStorage.removeItem("jwt");
     };
-    if (loggedin) {
+    if (sessionStorage.getItem("jwt")) {
       return (
         <Button variant="contained" onClick={handleLogoutClick}>
           Log out
@@ -73,7 +69,6 @@ export default function Login() {
           "Are you sure you want to delete your customer credentials?"
         )
       ) {
-        setLoggedin(false);
         fetch(import.meta.env.VITE_API_DELCUSTOMER, {
           method: "GET",
           headers: {
@@ -92,7 +87,7 @@ export default function Login() {
       }
     };
 
-    if (loggedin) {
+    if (sessionStorage.getItem("jwt")) {
       return (
         <Button variant="contained" onClick={handleDeleteClick}>
           Delete Login Credentials
@@ -115,7 +110,6 @@ export default function Login() {
       sessionStorage.setItem("jwt", token);
       if (response.status == 200) {
         setMessage("Login successful!");
-        setLoggedin(true);
       } else {
         setMessage("Wrong username or password.");
       }

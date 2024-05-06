@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../petshopapi";
-import ProductCatalog from "./ProductCatalog.jsx"
+import ProductCatalog from "./ProductCatalogue.jsx"
 import { Typography } from "@mui/material";
 //import { fetchIndividualProducts } from "../petshopapi";
 

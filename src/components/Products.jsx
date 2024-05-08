@@ -7,70 +7,69 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 
-//Something about this or petshopapi.js or .env file breaks FrontPage.jsx view of products.
 
 export default function Products() {
-  function ReserveButton() {
-    if (sessionStorage.getItem("jwt")) {
-      return (
-        <IconButton onClick={() => handleReserve()}>
-          <AddShoppingCartIcon />
-        </IconButton>
-      );
+    function ReserveButton() {
+        if (sessionStorage.getItem("jwt")) {
+            return (
+                <IconButton onClick={() => handleReserve()}>
+                    <AddShoppingCartIcon />
+                </IconButton>
+            );
+        }
     }
-  }
 
-  const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);
 
-  const [colDef] = useState([
-    { field: "name", filter: true },
-    { field: "color", filter: true, width: 100 },
-    { field: "size", filter: true, width: 100 },
-    { field: "price", filter: true, width: 100 },
-    {
-      field: "manufacturer.name",
-      filter: true,
-      width: 160,
-      headerName: "Manufacturer",
-    },
-    {
-      field: "productType.productTypeValue",
-      filter: true,
-      width: 160,
-      headerName: "Type",
-    },
-    //{
-    //  cellRenderer: params =>
-    //      <Button size="small" onClick={() => handleReserve()}>Reserve</Button>, width: 120
-    //}
-    { cellRenderer: (params) => ReserveButton() },
-  ]);
+    const [colDef] = useState([
+        { field: "name", filter: true },
+        { field: "color", filter: true, width: 100 },
+        { field: "size", filter: true, width: 100 },
+        { field: "price", filter: true, width: 100 },
+        {
+            field: "manufacturer.name",
+            filter: true,
+            width: 160,
+            headerName: "Manufacturer",
+        },
+        {
+            field: "productType.productTypeValue",
+            filter: true,
+            width: 160,
+            headerName: "Type",
+        },
+        //{
+        //  cellRenderer: params =>
+        //      <Button size="small" onClick={() => handleReserve()}>Reserve</Button>, width: 120
+        //}
+        { cellRenderer: (params) => ReserveButton() },
+    ]);
 
-  const handleReserve = {
-    //TODO create reserving functionality
-  };
+    const handleReserve = {
+        //TODO create reserving functionality
+    };
 
-  useEffect(() => {
-    handleFetch();
-  }, []);
+    useEffect(() => {
+        handleFetch();
+    }, []);
 
-  const handleFetch = () => {
-    fetchProductsWithInfo()
-      .then((data) => setProducts(data))
-      .catch((err) => console.error(err));
-  };
+    const handleFetch = () => {
+        fetchProductsWithInfo()
+            .then((data) => setProducts(data))
+            .catch((err) => console.error(err));
+    };
 
-  return (
-    <>
-      <div className="ag-theme-material" style={{ height: 600 }}>
-        <AgGridReact
-          rowData={products}
-          columnDefs={colDef}
-          pagination={true}
-          paginationAutoPageSize={true}
-          suppressCellFocus={true}
-        />
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="ag-theme-material" style={{ height: 600 }}>
+                <AgGridReact
+                    rowData={products}
+                    columnDefs={colDef}
+                    pagination={true}
+                    paginationAutoPageSize={true}
+                    suppressCellFocus={true}
+                />
+            </div>
+        </>
+    );
 }

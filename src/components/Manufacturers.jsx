@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchManufacturers } from "../petshopapi.js";
 
-import { Box, Typography, Stack, Card, CardActionArea, CardContent, CardActions, Button } from "@mui/material";
+import { Box, Typography, Stack, Card, CardActionArea, CardContent } from "@mui/material";
 
 import ManufacturerElement from "./ManufacturerElement.jsx";
 

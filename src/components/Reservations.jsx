@@ -4,7 +4,6 @@ import ProductsGrid from "./ProductsGrid";
 import { newReservation } from "../petshopapi";
 
 export default function Reservations() {
-
     const [currentReservations, setCurrentReservations] = useState([]);
     const [error, setError] = useState("")
 
@@ -25,8 +24,6 @@ export default function Reservations() {
         }catch (err) {
             setError(err.message)
         }
-
-
     }
 
     return (

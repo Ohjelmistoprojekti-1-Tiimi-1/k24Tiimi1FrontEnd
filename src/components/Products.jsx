@@ -3,21 +3,11 @@ import { AgGridReact } from "ag-grid-react";
 import { fetchProductsWithInfo } from "../petshopapi";
 import ReserveButton from "./ReserveButton";
 
-
-
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 
 
 export default function Products() {
-    function reserveButton(product) {
-        if (sessionStorage.getItem("jwt")) {
-            return (
-                <ReserveButton product ={product} ></ReserveButton>
-            );
-        }
-    }
-
     const [products, setProducts] = useState([]);
 
     const [colDef] = useState([
@@ -37,11 +27,11 @@ export default function Products() {
             width: 160,
             headerName: "Type",
         },
-        //{
-        //  cellRenderer: params =>
-        //      <Button size="small" onClick={() => handleReserve()}>Reserve</Button>, width: 120
-        //}
-        { cellRenderer: (params) => reserveButton(params.data) },
+
+        {
+            cellRenderer: (params) =>
+                <ReserveButton product={params.data}></ReserveButton>
+        },
     ]);
 
     useEffect(() => {
@@ -55,16 +45,14 @@ export default function Products() {
     };
 
     return (
-        <>
-            <div className="ag-theme-material" style={{ height: 600 }}>
-                <AgGridReact
-                    rowData={products}
-                    columnDefs={colDef}
-                    pagination={true}
-                    paginationAutoPageSize={true}
-                    suppressCellFocus={true}
-                />
-            </div>
-        </>
+        <div className="ag-theme-material" style={{ height: 600 }}>
+            <AgGridReact
+                rowData={products}
+                columnDefs={colDef}
+                pagination={true}
+                paginationAutoPageSize={true}
+                suppressCellFocus={true}
+            />
+        </div>
     );
 }

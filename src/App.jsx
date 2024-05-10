@@ -25,19 +25,6 @@ export const settings = {
 
 const theme = createTheme(settings);
 
-function ReservationButton() {
-    if (sessionStorage.getItem("jwt")) {
-        return (
-            <Tab
-                component={Link}
-                label="Reservations"
-                to="/reservations"
-                icon={<BeenhereIcon />}
-            ></Tab>
-        );
-    }
-}
-
 function App() {
     const [value, setValue] = useState(0);
 
@@ -74,7 +61,12 @@ function App() {
                             to="/manufacturers"
                             icon={<FactoryIcon />}
                         ></Tab>
-                        {ReservationButton()}
+                        <Tab
+                            component={Link}
+                            label="Reservations"
+                            to="/reservations"
+                            icon={<BeenhereIcon />}
+                        ></Tab>
                         <Tab
                             component={Link}
                             label="About"

@@ -29,3 +29,17 @@ export const fetchManufacturerProducts = async (manufacturerName) => {
         throw new Error("Error fetching manufacturer's products: " + response.statusText);
     return await response.json();
 }
+
+export const newReservation = async (reservation) => {
+    const response = await fetch(import.meta.env.VITE_API_NEWRESERVATION, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': sessionStorage.getItem("jwt")
+        },
+        body: JSON.stringify(reservation),
+    });
+    if (!response.ok)
+        throw new Error("Error inserting new reservation: " + response.statusText);
+    return await response.text();
+}

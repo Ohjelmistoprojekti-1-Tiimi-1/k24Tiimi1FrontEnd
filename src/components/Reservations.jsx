@@ -1,28 +1,41 @@
 import React, {useEffect, useState} from "react";
-import { Box, Typography } from "@mui/material";
+import {Button, Box, Typography } from "@mui/material";
 import ProductsGrid from "./ProductsGrid";
+import { newReservation } from "../petshopapi";
 
 export default function Reservations() {
 
-    const [currentReservations, setCurrentReservations] = useState([])
-    
+    const [currentReservations, setCurrentReservations] = useState([]);
+    const [error, setError] = useState("")
+
     useEffect (() =>  {
         let storage = JSON.parse(sessionStorage.getItem("reservations"));
-        console.log(storage)
         if (storage === null) {
-            console.log("ei")
             setCurrentReservations([])
         }
-        console.log(storage)
         setCurrentReservations(storage)
     }, [])
 
+    const reserveProducts = async () => {
+        try {
+            const message = await newReservation(currentReservations);
+            setError(message)
+            sessionStorage.setItem("reservations", JSON.stringify([]));
+            setCurrentReservations([]);
+        }catch (err) {
+            setError(err.message)
+        }
+
+
+    }
 
     return (
         <Box>
-            <Box className="currenReservations">
+            <Box className="currentReservations">
                 <Typography variant="h3">Current reservation</Typography>
-                <ProductsGrid variant="current" products={currentReservations}></ProductsGrid>
+                <ProductsGrid reserveButtonTrue={false} products={currentReservations} height={300} ></ProductsGrid>
+                <Button onClick={reserveProducts} sx= {{marginLeft: "1em"}}variant="contained">Reserve products above</Button>
+                <Typography color={"error"} >{error}</Typography>
             </Box>
         </Box>
     );

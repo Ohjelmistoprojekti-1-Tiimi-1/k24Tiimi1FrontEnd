@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { fetchProductsWithInfo } from "../petshopapi";
-import { Button, IconButton } from "@mui/material";
 import ReserveButton from "./ReserveButton";
 
 

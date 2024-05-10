@@ -1,24 +1,20 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { fetchProductsWithInfo } from "../petshopapi";
-import { Button, IconButton } from "@mui/material";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 
 
-export default function ProductsGrid(params) {
-    function ReserveButton(params) {
-        console.log(params)
-        if (sessionStorage.getItem("jwt") && variant !== "current") {
+export default function ProductsGrid({reserveButtonTrue, products, height}) {
+    function ReserveButton(product) {
+        if (sessionStorage.getItem("jwt") && reserveButtonTrue) {
             return (
                <ReserveButton product={product} ></ReserveButton>
             );
+        }else {
+            return <></>
         }
     }
-
-    const [products] = useState(params.products);
 
     const [colDef] = useState([
         { field: "name", filter: true },
@@ -41,12 +37,13 @@ export default function ProductsGrid(params) {
         //  cellRenderer: params =>
         //      <Button size="small" onClick={() => handleReserve()}>Reserve</Button>, width: 120
         //}
+        { field: "count", filter: true, width: 100 },
         { cellRenderer: (params) => ReserveButton(params) },
+        
     ]);
 
     return (
-        <>
-            <div className="ag-theme-material" style={{ height: 600 }}>
+            <div className="ag-theme-material" style={{ height: height }}>
                 <AgGridReact
                     rowData={products}
                     columnDefs={colDef}
@@ -55,6 +52,5 @@ export default function ProductsGrid(params) {
                     suppressCellFocus={true}
                 />
             </div>
-        </>
     );
 } 

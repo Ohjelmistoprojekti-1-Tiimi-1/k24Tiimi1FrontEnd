@@ -6,14 +6,15 @@ function ReserveButton (product) {
     const reserve = async () => {
         const reservations = JSON.parse(sessionStorage.getItem("reservations"));
         if  (reservations === "" || reservations == null) {
-            sessionStorage.setItem("reservations", JSON.stringify([product]))
+            sessionStorage.setItem("reservations", JSON.stringify([{...product.product, count: 1}]))
         }else {
-            reservations.push(product)
+            //Tähän metodi jos haluaa että saman tuotteen varaukset näkyvät omalla rivillä. Lisää jsoniin myös attribuutti count.
+            reservations.push({...product.product, count:1});
             sessionStorage.setItem("reservations", JSON.stringify(reservations))
         }
     }
 
     return (< IconButton onClick={reserve}>
                     <AddShoppingCartIcon />
-        </IconButton >)
+            </IconButton >)
 } export default ReserveButton ;

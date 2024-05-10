@@ -1,5 +1,5 @@
-import { CardContent, CardHeader, Card, Box, Grid, IconButton, Typography } from "@mui/material"
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { CardContent, CardHeader, Card, Box, Grid, Typography } from "@mui/material"
+import ReserveButton from './ReserveButton'
 
 
 function ProductCatalog(props) {
@@ -32,10 +32,8 @@ function ProductCard(
             ></CardMedia>
             */}
             <CardContent>
-                <Typography>{props.product.manufacturer}</Typography>
-                < IconButton >
-                    <AddShoppingCartIcon />
-                </IconButton >
+                <Typography>{props.product.manufacturer.name}</Typography>
+                <ReserveButton product={props.product} ></ReserveButton>
             </CardContent>
         </Card>
     );

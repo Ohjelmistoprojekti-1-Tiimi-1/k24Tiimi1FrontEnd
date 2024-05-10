@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchProducts } from "../petshopapi";
+import { fetchProductsWithInfo } from "../petshopapi";
 import ProductCatalog from "./ProductCatalogue.jsx"
 import { Typography } from "@mui/material";
 
@@ -12,10 +12,10 @@ function FrontPage() {
     }, []);
 
     const handleFetch = () => {
-        fetchProducts()
-            .then(data => setProducts(data._embedded.products))
-            .catch(err => console.error(err))
-    }
+        fetchProductsWithInfo()
+            .then((data) => setProducts(data))
+            .catch((err) => console.error(err));
+    };
 
     return (
         <>

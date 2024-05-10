@@ -2,24 +2,23 @@ import { useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { fetchProductsWithInfo } from "../petshopapi";
 import { Button, IconButton } from "@mui/material";
-import ReserveButton from "./ReserveButton";
-
-
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 
 
-export default function Products() {
-    function reserveButton(product) {
-        if (sessionStorage.getItem("jwt")) {
+export default function ProductsGrid(params) {
+    function ReserveButton(params) {
+        console.log(params)
+        if (sessionStorage.getItem("jwt") && variant !== "current") {
             return (
-                <ReserveButton product ={product} ></ReserveButton>
+               <ReserveButton product={product} ></ReserveButton>
             );
         }
     }
 
-    const [products, setProducts] = useState([]);
+    const [products] = useState(params.products);
 
     const [colDef] = useState([
         { field: "name", filter: true },
@@ -42,18 +41,8 @@ export default function Products() {
         //  cellRenderer: params =>
         //      <Button size="small" onClick={() => handleReserve()}>Reserve</Button>, width: 120
         //}
-        { cellRenderer: (params) => reserveButton(params.data) },
+        { cellRenderer: (params) => ReserveButton(params) },
     ]);
-
-    useEffect(() => {
-        handleFetch();
-    }, []);
-
-    const handleFetch = () => {
-        fetchProductsWithInfo()
-            .then((data) => setProducts(data))
-            .catch((err) => console.error(err));
-    };
 
     return (
         <>
@@ -68,4 +57,4 @@ export default function Products() {
             </div>
         </>
     );
-}
+} 

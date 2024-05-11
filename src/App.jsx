@@ -77,7 +77,7 @@ function App() {
                             ></Tab>
                             <Tab
                                 component={Link}
-                                label="Login"
+                                label="Account"
                                 to="/login"
                                 icon={<AccountCircleIcon />}
                             ></Tab>

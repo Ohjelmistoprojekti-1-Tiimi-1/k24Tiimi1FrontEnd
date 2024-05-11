@@ -6,7 +6,6 @@ import ReservationProducts from "./ReservationProducts";
 import ReservationContext from "./ReservationContext";
 
 export default function Reservations() {
-    const [open, setOpen] = useState(false);
 
 
     return (
@@ -15,13 +14,6 @@ export default function Reservations() {
                 <Typography variant="h3">Current reservation</Typography>
                 <ReservationProducts />
             </Box>
-            <Snackbar
-                open={open}
-                autoHideDuration={6000}
-                onClose={() => setOpen(false)}
-                message={"Please login first to make the reservatioin: "}
-                action={<Link to={"/login"} style={{ color: "white" }} >To Login Page</Link>}
-            />
         </>
     );
 };

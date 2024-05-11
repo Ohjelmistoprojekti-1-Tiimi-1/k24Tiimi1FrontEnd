@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fetchManufacturerProducts } from "../petshopapi";
 
 import { Typography, IconButton } from "@mui/material";
@@ -7,9 +7,11 @@ import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 
+import ReservationContext from "./ReservationContext";
 
 const ManufacturerElement = ({ manufacturer }) => {
     const [products, setProducts] = useState([]);
+    const { reservationProducts, addToReservation }  = useContext(ReservationContext);
     const [colDef] = useState([
         { field: 'name', filter: true },
         { field: 'color', filter: true, width: 100 },
@@ -18,7 +20,7 @@ const ManufacturerElement = ({ manufacturer }) => {
         { field: 'productType.productTypeValue', filter: true, width: 160, headerName: "Type" },
         {
             cellRenderer: params =>
-                < IconButton onClick={() => handleReserve()} >
+                < IconButton onClick={() => handleReserve(params.data)} >
                     <AddShoppingCartIcon />
                 </IconButton >
         }
@@ -35,9 +37,9 @@ const ManufacturerElement = ({ manufacturer }) => {
             .catch(err => console.error(err));
     };
 
-    const handleReserve = {
-        //TODO create reserving functionality
-    }
+    const handleReserve = (product) => {
+        addToReservation(product);
+    };
 
 
     return (

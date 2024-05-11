@@ -3,8 +3,9 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import { groupBy, sumBy } from "lodash";
-
+import { Button } from "@mui/material";
 import ReservationContext from "./ReservationContext";
+import { newReservation } from "../petshopapi";
 
 const ReservationProducts = () => {
     const { reservationProducts, addToReservation } = useContext(ReservationContext);
@@ -31,7 +32,6 @@ const ReservationProducts = () => {
 
     useEffect(() => {
         const withCount = reservationProducts.map(reservationProduct => ({ ...reservationProduct, count: 1 }));
-        console.log(withCount)
         const groupped = groupBy(withCount, "productId");
         const products = Object.entries(groupped).map(([key, value]) => {
             return (
@@ -44,6 +44,24 @@ const ReservationProducts = () => {
         setProducts(products);
     }, []);
 
+    const reserveProducts = () => {
+        if (!sessionStorage.getItem("jwt")) {
+            setOpen(true);
+        } else {
+            const reservation = procucts.map(reservationProduct => {
+                return (
+                    {
+                        productId: reservationProduct.productId,
+                        count: reservationProduct.count
+                    }
+                );
+            });
+            newReservation(reservation)
+                .then(() => addToReservation([]))
+                .catch(err => console.error(err));
+        }
+    };
+
     return (
         <>
             <div className="ag-theme-material" style={{ height: 600 }}>
@@ -55,6 +73,7 @@ const ReservationProducts = () => {
                     suppressCellFocus={true}
                 />
             </div>
+            <Button onClick={reserveProducts}>Reserve</Button>
         </>
     );
 };

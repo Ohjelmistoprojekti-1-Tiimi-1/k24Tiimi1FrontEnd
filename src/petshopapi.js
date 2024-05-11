@@ -41,5 +41,5 @@ export const newReservation = async (reservation) => {
     });
     if (!response.ok)
         throw new Error("Error inserting new reservation: " + response.statusText);
-    return await response.text();
+    return await response.json();
 }

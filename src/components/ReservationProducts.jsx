@@ -26,20 +26,29 @@ const ReservationProducts = () => {
             width: 160,
             headerName: "Type",
         },
+        { field: "count", filter: true}
     ]);
 
     useEffect(() => {
-        // reservationProducts.forEach(r => console.log(r))
-        const withCount = reservationProducts.map(reservationProduct => ({...reservationProduct, count: 1}));
-        const goupped = groupBy(withCount, "productId")
-        console.log(goupped)
-        }, [])
+        const withCount = reservationProducts.map(reservationProduct => ({ ...reservationProduct, count: 1 }));
+        console.log(withCount)
+        const groupped = groupBy(withCount, "productId");
+        const products = Object.entries(groupped).map(([key, value]) => {
+            return (
+                {
+                    ...value[0],
+                    count: sumBy(value, "count")
+                }
+            );
+        });
+        setProducts(products);
+    }, []);
 
     return (
         <>
             <div className="ag-theme-material" style={{ height: 600 }}>
                 <AgGridReact
-                    rowData={reservationProducts}
+                    rowData={procucts}
                     columnDefs={colDef}
                     pagination={true}
                     paginationAutoPageSize={true}

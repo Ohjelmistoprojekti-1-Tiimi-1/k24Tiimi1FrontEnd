@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { Stack, Button } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function Login() {
   // objekti loginia varten
@@ -21,9 +24,15 @@ export default function Login() {
   // viesti joka tiedottaa, onnistuiko logini vai ei
   const [message, setMessage] = useState("");
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
+
   useEffect(() => {
     if (sessionStorage.getItem("jwt")) {
-      setMessage("Login successful!");
+      setMessage("Signed in successfully!");
     }
   }, []);
 
@@ -46,7 +55,7 @@ export default function Login() {
   // logout-nappi ja toiminnallisuus
   function LogoutButton() {
     const handleLogoutClick = () => {
-      setMessage("Logged out successfully.");
+      setMessage("Signed out successfully.");
 
       sessionStorage.removeItem("jwt");
     };
@@ -66,7 +75,7 @@ export default function Login() {
     const handleDeleteClick = () => {
       if (
         window.confirm(
-          "Are you sure you want to delete your customer credentials?"
+          "Are you sure you want to delete your account credentials?"
         )
       ) {
         fetch(import.meta.env.VITE_API_DELCUSTOMER, {
@@ -79,10 +88,10 @@ export default function Login() {
           .then((response) => {
             if (!response.ok)
               throw new Error(
-                "Error in customer deletion: " + response.statusText
+                "Error in account deletion: " + response.statusText
               );
           })
-          .then(setMessage("Login deleted successfully."))
+          .then(setMessage("Account deleted successfully."))
           .catch((err) => console.error(err));
       }
     };
@@ -90,7 +99,7 @@ export default function Login() {
     if (sessionStorage.getItem("jwt")) {
       return (
         <Button variant="contained" onClick={handleDeleteClick}>
-          Delete Login Credentials
+          Delete your account
         </Button>
       );
     }
@@ -109,7 +118,7 @@ export default function Login() {
       const token = response.headers.get("Authorization");
       sessionStorage.setItem("jwt", token);
       if (response.status == 200) {
-        setMessage("Login successful!");
+        setMessage("Signed in successfully!");
       } else {
         setMessage("Wrong username or password.");
       }
@@ -139,48 +148,56 @@ export default function Login() {
   return (
     <>
       <Typography variant="h4" sx={{ p: 2 }}>
-        Login:
+        Sign in:
       </Typography>
       <Stack direction="row" sx={{ pl: 2 }} spacing={2}>
         <TextField
           value={logins.username}
           id="outlined-basic"
-          label="username"
+          label="Username"
           placeholder="Username"
           onChange={(e) => setLogins({ ...logins, username: e.target.value })}
         />
         <TextField
+          type={passwordVisible ? 'text' : 'password'}
           value={logins.password}
           id="outlined-basic"
-          label="password"
+          label="Password"
           placeholder="Password"
           onChange={(e) => setLogins({ ...logins, password: e.target.value })}
         />
+        <IconButton onClick={togglePasswordVisibility} edge="end">
+        {passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+      </IconButton>
         <Button variant="contained" onClick={handleLoginClick}>
-          Login
+          Sign in
         </Button>
       </Stack>
 
       <Typography variant="h4" sx={{ p: 2 }}>
-        Sign Up:
+        Sign up:
       </Typography>
       <Stack direction="row" sx={{ pl: 2 }} spacing={2}>
         <TextField
           value={signups.username}
           id="outlined-basic"
-          label="username"
+          label="Username"
           placeholder="Username"
           onChange={(e) => setSignups({ ...signups, username: e.target.value })}
         />
         <TextField
+          type={passwordVisible ? 'text' : 'password'}
           value={signups.password}
           id="outlined-basic"
-          label="password"
+          label="Password"
           placeholder="Password"
           onChange={(e) => setSignups({ ...signups, password: e.target.value })}
         />
+        <IconButton onClick={togglePasswordVisibility} edge="end">
+        {passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+      </IconButton>
         <Button variant="contained" onClick={handleSignupClick}>
-          Sign Up
+          Sign up
         </Button>
       </Stack>
       <Typography variant="h6" sx={{ pl: 2 }}>

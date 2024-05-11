@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
+import { IconButton } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { fetchProductsWithInfo } from "../petshopapi";
-import ReserveButton from "./ReserveButton";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 
+import ReservationContext from "./ReservationContext";
 
 export default function Products() {
     const [products, setProducts] = useState([]);
-
+    const { reservationProducts, addToReservation }  = useContext(ReservationContext);
     const [colDef] = useState([
         { field: "name", filter: true },
         { field: "color", filter: true, width: 100 },
@@ -27,12 +29,17 @@ export default function Products() {
             width: 160,
             headerName: "Type",
         },
-
         {
-            cellRenderer: (params) =>
-                <ReserveButton product={params.data}></ReserveButton>
-        },
+            cellRenderer: params =>
+                < IconButton onClick={() => handleReserve(params.data)} >
+                    <AddShoppingCartIcon />
+                </IconButton >
+        }
     ]);
+
+    const handleReserve = (product) => {
+        addToReservation(product);
+    };
 
     useEffect(() => {
         handleFetch();

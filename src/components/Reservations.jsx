@@ -1,40 +1,25 @@
 import { useEffect, useState } from "react";
 import { Button, Box, Typography, Snackbar } from "@mui/material";
 import { Link } from "react-router-dom";
-import ProductsGrid from "./ProductsGrid";
+import ProductsGrid from "./notUsedComponents/ProductsGrid";
 import { newReservation } from "../petshopapi";
+import ReservationProducts from "./ReservationProducts";
 
 export default function Reservations() {
-    const [currentReservations, setCurrentReservations] = useState([]);
-    const [error, setError] = useState("");
     const [open, setOpen] = useState(false);
+    
 
-    useEffect(() => {
-        let storage = JSON.parse(sessionStorage.getItem("reservations"));
-        if (storage === null) {
-            setCurrentReservations([]);
-        }
-        setCurrentReservations(storage);
-    }, []);
-
-    const reserveProducts = async () => {
-        try {
-            const message = await newReservation(currentReservations);
-            setError(message);
-            sessionStorage.setItem("reservations", JSON.stringify([]));
-            setCurrentReservations([]);
-        } catch (err) {
-            console.error(err.message);
+    const reserveProducts = () => {
+        if (!sessionStorage.getItem("jwt"))
             setOpen(true)
-        }
-    };
+    }
+   
 
     return (
         <>
-            <Box className="currentReservations">
+            <Box>
                 <Typography variant="h3">Current reservation</Typography>
-                <ProductsGrid reserveButtonTrue={false} products={currentReservations} height={300} ></ProductsGrid>
-                <Button onClick={reserveProducts} sx={{ marginLeft: "1em" }} variant="contained">Reserve products above</Button>
+                <ReservationProducts />
             </Box>
             <Snackbar
                 open={open}
@@ -45,4 +30,4 @@ export default function Reservations() {
             />
         </>
     );
-}
+};

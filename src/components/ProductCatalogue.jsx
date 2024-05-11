@@ -1,5 +1,5 @@
 import { CardContent, CardHeader, Card, Box, Grid, Typography } from "@mui/material"
-import ReserveButton from './ReserveButton'
+import ReserveButton from './notUsedComponents/ReserveButton'
 
 
 function ProductCatalog(props) {

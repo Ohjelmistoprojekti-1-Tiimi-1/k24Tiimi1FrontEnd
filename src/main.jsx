@@ -11,42 +11,42 @@ import Login from './components/Login.jsx';
 import Manufacturers from './components/Manufacturers.jsx';
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainApp />,
-    errorElement: <Error />,
-    children: [
-      {
-        element: <FrontPage />,
-        index: true
-      },
-      {
-        path: "about",
-        element: <About />,
-      },
-      {
-        path: "reservations",
-        element: <Reservations />,
-      },
-      {
-        path: "products",
-        element: <Products />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "manufacturers",
-        element: <Manufacturers />
-      }
-      
-    ]
-  }
+    {
+        path: "/",
+        element: <MainApp />,
+        errorElement: <Error />,
+        children: [
+            {
+                element: <FrontPage />,
+                index: true
+            },
+            {
+                path: "about",
+                element: <About />,
+            },
+            {
+                path: "reservations",
+                element: <Reservations />,
+            },
+            {
+                path: "products",
+                element: <Products />,
+            },
+            {
+                path: "login",
+                element: <Login />,
+            },
+            {
+                path: "manufacturers",
+                element: <Manufacturers />
+            }
+
+        ]
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>,
+);

@@ -29,7 +29,7 @@ const ReservationProducts = () => {
             width: 160,
             headerName: "Type",
         },
-        { field: "count", filter: true}
+        { field: "count", filter: true }
     ]);
 
     useEffect(() => {
@@ -50,17 +50,19 @@ const ReservationProducts = () => {
         if (!sessionStorage.getItem("jwt")) {
             setOpen(true);
         } else {
-            const reservation = procucts.map(reservationProduct => {
-                return (
-                    {
-                        productId: reservationProduct.productId,
-                        count: reservationProduct.count
-                    }
-                );
-            });
-            newReservation(reservation)
-                .then(() => addToReservation([]))
-                .catch(err => console.error(err));
+            if (window.confirm("Are you sure?")) {
+                const reservation = procucts.map(reservationProduct => {
+                    return (
+                        {
+                            productId: reservationProduct.productId,
+                            count: reservationProduct.count
+                        }
+                    );
+                });
+                newReservation(reservation)
+                    .then(() => sessionStorage.removeItem("reservation"))
+                    .catch(err => console.error(err));
+            }
         }
     };
 

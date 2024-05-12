@@ -24,7 +24,7 @@ const Manufacturer = () => {
     return (
         <>
         <Typography variant="h5" sx={{ p: 2 }}>
-        Click on the manufacturer to view their products
+        Click on the manufacturer to view their products:
       </Typography>
         <Box sx={{ p: 2 }}>
 

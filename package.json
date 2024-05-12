@@ -18,6 +18,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "ag-grid-community": "^31.2.1",
     "ag-grid-react": "^31.2.1",
+    "dayjs": "^1.11.11",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "match-sorter": "^6.3.4",

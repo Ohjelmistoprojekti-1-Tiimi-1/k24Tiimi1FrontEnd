@@ -45,7 +45,7 @@ const CustomerReservations = () => {
 
     return (
         <>
-            <Typography variant="h4">Your past reservations</Typography>
+            <Typography variant="h4">Your reservations</Typography>
             <div className="ag-theme-material" style={{ height: 600 }}>
                 <AgGridReact
                     rowData={reservations}

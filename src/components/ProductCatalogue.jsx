@@ -1,5 +1,8 @@
-import { CardContent, CardHeader, Card, Box, Grid, Typography } from "@mui/material"
+import { useContext } from "react";
+import { CardContent, CardHeader, Card, Box, Grid, Typography, IconButton } from "@mui/material"
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import ReserveButton from './notUsedComponents/ReserveButton'
+import ReservationContext from "./ReservationContext";
 
 
 function ProductCatalog(props) {
@@ -17,9 +20,10 @@ function ProductCatalog(props) {
 
 }
 
-function ProductCard(
-    props
-) {
+function ProductCard(props) {
+    const { addToReservation }  = useContext(ReservationContext);
+
+
     return (
         <Card sx={{ margin: "2em", width: 230 }}>
             <CardHeader subheader={props.product.name}></CardHeader>
@@ -33,7 +37,10 @@ function ProductCard(
             */}
             <CardContent>
                 <Typography>{props.product.manufacturer.name}</Typography>
-                <ReserveButton product={props.product} ></ReserveButton>
+                < IconButton onClick={() => addToReservation(props.product)} >
+                    <AddShoppingCartIcon />
+                </IconButton >
+
             </CardContent>
         </Card>
     );

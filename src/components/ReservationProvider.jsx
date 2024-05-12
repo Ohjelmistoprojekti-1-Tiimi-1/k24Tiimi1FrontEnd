@@ -24,7 +24,7 @@ const ReservationProvider = ({ children }) => {
 
     useEffect(() => {
         sessionStorage.setItem("reservation", JSON.stringify(reservationProducts));
-        console.log(JSON.parse(sessionStorage.getItem("reservation"))); // remove when ready
+        // console.log(JSON.parse(sessionStorage.getItem("reservation"))); 
     }, [reservationProducts]);
 
 

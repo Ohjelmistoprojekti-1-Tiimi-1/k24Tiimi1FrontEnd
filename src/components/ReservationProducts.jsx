@@ -14,32 +14,30 @@ const ReservationProducts = () => {
     const [procucts, setProducts] = useState([]);
     const [colDef] = useState([
         { field: "name", filter: true },
-        { field: "color", filter: true, width: 100 },
-        { field: "size", filter: true, width: 100 },
-        { field: "price", filter: true, width: 100 },
+        { field: "color", filter: true },
+        { field: "size", filter: true },
+        { field: "price", filter: true },
         {
             field: "manufacturer.name",
             filter: true,
-            width: 160,
             headerName: "Manufacturer",
         },
         {
             field: "productType.productTypeValue",
             filter: true,
-            width: 160,
             headerName: "Type",
         },
         {
             cellRenderer: params =>
-                <Button size="small" color="error" onClick={() => changeReservatioinProductCount(params.data.productId, -1)}>
+                <Button size="small" onClick={() => changeReservatioinProductCount(params.data.productId, -1)}>
                     ➖
                 </Button>
             , width: 120
         },
-        { field: "count", filter: true },
+        { field: "count", cellStyle: {textAlign: 'center'}, filter: true, width:110 },
         {
             cellRenderer: params =>
-                <Button size="small" color="error" onClick={() => changeReservatioinProductCount(params.data.productId, 1)}>
+                <Button size="small"  onClick={() => changeReservatioinProductCount(params.data.productId, 1)}>
                     ➕
                 </Button>
             , width: 120
@@ -103,6 +101,10 @@ const ReservationProducts = () => {
         }));
     };
 
+    const autoSizeStrategy = {
+        type: 'fitCellContents'
+    };
+
     return (
         <>
             <Typography variant="h4">Current reservation</Typography>
@@ -113,6 +115,7 @@ const ReservationProducts = () => {
                     pagination={true}
                     paginationAutoPageSize={true}
                     suppressCellFocus={true}
+                    autoSizeStrategy={autoSizeStrategy}
                 />
             </div>
             <Button onClick={reserveProducts}>Reserve</Button>

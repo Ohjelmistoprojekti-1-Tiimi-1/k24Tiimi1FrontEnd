@@ -22,7 +22,11 @@ const Manufacturer = () => {
     };
 
     return (
-        <Box>
+        <>
+        <Typography variant="h5" sx={{ p: 2 }}>
+        Click on the manufacturer to view their products
+      </Typography>
+        <Box sx={{ p: 2 }}>
 
             <Stack direction="row" spacing={2} mt={2} alignItems="center">
                 {manufacturers.map(manufacturer => {
@@ -33,10 +37,7 @@ const Manufacturer = () => {
                                     <Typography gutterBottom variant="h5" component="div">
                                         {manufacturer.name}
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                                        species, ranging across all continents except Antarctica
-                                    </Typography>
+                                    
                                 </CardContent>
                             </CardActionArea>
                         </Card>
@@ -51,6 +52,7 @@ const Manufacturer = () => {
 
 
         </Box>
+        </>
     );
 };
 

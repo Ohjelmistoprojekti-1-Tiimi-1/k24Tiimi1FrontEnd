@@ -29,7 +29,21 @@ const ReservationProducts = () => {
             width: 160,
             headerName: "Type",
         },
+        {
+            cellRenderer: params =>
+                <Button size="small" color="error" onClick={() => changeReservatioinProductCount(params.data.productId, -1)}>
+                    ➖
+                </Button>
+            , width: 120
+        },
         { field: "count", filter: true },
+        {
+            cellRenderer: params =>
+                <Button size="small" color="error" onClick={() => changeReservatioinProductCount(params.data.productId, 1)}>
+                    ➕
+                </Button>
+            , width: 120
+        },
         {
             cellRenderer: params =>
                 <Button size="small" color="error" onClick={() => removeFromReservation(params.data.productId)}>
@@ -68,10 +82,26 @@ const ReservationProducts = () => {
                 });
                 newReservation(reservation)
                     .then(() => sessionStorage.removeItem("reservation"))
-                    .then(() => window.location.reload())
+                    .then(() => window.location.reload()) // molemmat pois ja metodi millä usecontex []
                     .catch(err => console.error(err));
             }
         }
+    };
+
+    const changeReservatioinProductCount = (productId, num) => {
+        setProducts(prevProducts => prevProducts.map(p => {
+            if (p.productId === productId) {
+                if (p.count + num === 0) {
+                    removeFromReservation(p.productId);
+                } else {
+                    return ({
+                        ...p,
+                        count: p.count + num,
+                    });
+                }
+            }
+            else return p;
+        }));
     };
 
     return (

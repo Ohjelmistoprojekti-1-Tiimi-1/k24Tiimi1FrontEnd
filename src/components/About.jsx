@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 export default function About() {
   return (
     <>
-      <Typography variant="h2" sx={{ p: 2 }}>
+      <Typography variant="h3" sx={{ p: 2 }}>
         Our story
       </Typography>
       <Stack direction="row" sx={{ pl: 2 }} spacing={3}>

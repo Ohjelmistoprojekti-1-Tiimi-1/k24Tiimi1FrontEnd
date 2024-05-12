@@ -19,7 +19,7 @@ function FrontPage() {
 
     return (
         <>
-            <Typography variant="h2" sx={{ p: 2 }}>
+            <Typography variant="h3" sx={{ p: 2 }}>
                 Welcome to PetShop!
             </Typography>
             <Typography sx={{ margin: "2em" }}>These products are -50% off right now!</Typography>

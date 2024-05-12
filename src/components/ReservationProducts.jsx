@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const ReservationProducts = () => {
     const [open, setOpen] = useState(false);
-    const { reservationProducts, addToReservation } = useContext(ReservationContext);
+    const { reservationProducts, addToReservation, removeFromReservation } = useContext(ReservationContext);
     const [procucts, setProducts] = useState([]);
     const [colDef] = useState([
         { field: "name", filter: true },
@@ -29,7 +29,14 @@ const ReservationProducts = () => {
             width: 160,
             headerName: "Type",
         },
-        { field: "count", filter: true }
+        { field: "count", filter: true },
+        {
+            cellRenderer: params =>
+                <Button size="small" color="error" onClick={() => removeFromReservation(params.data.productId)}>
+                    Delete
+                </Button>
+            , width: 120
+        }
     ]);
 
     useEffect(() => {
@@ -44,7 +51,7 @@ const ReservationProducts = () => {
             );
         });
         setProducts(products);
-    }, []);
+    }, [reservationProducts]);
 
     const reserveProducts = () => {
         if (!sessionStorage.getItem("jwt")) {

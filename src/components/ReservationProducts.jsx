@@ -44,8 +44,8 @@ const ReservationProducts = () => {
         },
         {
             cellRenderer: params =>
-                <Button size="small" color="error" onClick={() => removeFromReservation(params.data.productId)}>
-                    Delete
+                <Button variant="contained" size="small" color="error" onClick={() => removeFromReservation(params.data.productId)}>
+                    Remove
                 </Button>
             , width: 120
         }
@@ -108,6 +108,7 @@ const ReservationProducts = () => {
     return (
         <>
             <Typography variant="h4">Current reservation</Typography>
+            <Button variant="contained" onClick={reserveProducts}>Reserve selected products</Button>
             <div className="ag-theme-material" style={{ height: 600 }}>
                 <AgGridReact
                     rowData={procucts}
@@ -118,13 +119,12 @@ const ReservationProducts = () => {
                     autoSizeStrategy={autoSizeStrategy}
                 />
             </div>
-            <Button onClick={reserveProducts}>Reserve</Button>
             <Snackbar
                 open={open}
                 autoHideDuration={6000}
                 onClose={() => setOpen(false)}
-                message={"Please login first to make the reservatioin: "}
-                action={<Link to={"/login"} style={{ color: "white" }} >To Login Page</Link>}
+                message={"Please sign in to complete the reservation."}
+                action={<Link to={"/login"} style={{ color: "white" }} >Sign in</Link>}
             />
         </>
     );

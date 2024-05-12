@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const ReservationProducts = () => {
     const [open, setOpen] = useState(false);
-    const { reservationProducts, addToReservation, removeFromReservation } = useContext(ReservationContext);
+    const { reservationProducts, addToReservation, removeFromReservation, emptyReservation } = useContext(ReservationContext);
     const [procucts, setProducts] = useState([]);
     const [colDef] = useState([
         { field: "name", filter: true },
@@ -81,8 +81,7 @@ const ReservationProducts = () => {
                     );
                 });
                 newReservation(reservation)
-                    .then(() => sessionStorage.removeItem("reservation"))
-                    .then(() => window.location.reload()) // molemmat pois ja metodi millä usecontex []
+                    .then(emptyReservation)
                     .catch(err => console.error(err));
             }
         }

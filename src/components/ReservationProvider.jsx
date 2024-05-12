@@ -17,6 +17,10 @@ const ReservationProvider = ({ children }) => {
         setReservationProducts(prevReservProducts => prevReservProducts.filter(r => r.productId !== productId));
     };
 
+    const emptyReservation = () => {
+        setReservationProducts([]);
+    }
+
 
     useEffect(() => {
         sessionStorage.setItem("reservation", JSON.stringify(reservationProducts));
@@ -25,7 +29,7 @@ const ReservationProvider = ({ children }) => {
 
 
     return (
-        <ReservationContext.Provider value={{ reservationProducts, addToReservation, removeFromReservation }}>
+        <ReservationContext.Provider value={{ reservationProducts, addToReservation, removeFromReservation, emptyReservation }}>
             {children}
         </ReservationContext.Provider>
     );

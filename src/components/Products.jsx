@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { IconButton } from "@mui/material";
+import { IconButton, Snackbar } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { fetchProductsWithInfo } from "../petshopapi";
+import { Link } from "react-router-dom";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
@@ -11,6 +12,7 @@ import ReservationContext from "./ReservationContext";
 
 export default function Products() {
     const [products, setProducts] = useState([]);
+    const [open, setOpen] = useState(false);
     const { reservationProducts, addToReservation }  = useContext(ReservationContext);
     const [colDef] = useState([
         { field: "name", filter: true },
@@ -39,6 +41,7 @@ export default function Products() {
 
     const handleReserve = (product) => {
         addToReservation(product);
+        setOpen(true);
     };
 
     useEffect(() => {
@@ -52,6 +55,7 @@ export default function Products() {
     };
 
     return (
+        <>
         <div className="ag-theme-material" style={{ height: 600 }}>
             <AgGridReact
                 rowData={products}
@@ -61,5 +65,13 @@ export default function Products() {
                 suppressCellFocus={true}
             />
         </div>
+        <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                onClose={() => setOpen(false)}
+                message={"Added to reservation."}
+                action={<Link to={"/reservations"} style={{ color: "white" }} >Go to reservations</Link>}
+            />
+        </>
     );
 }

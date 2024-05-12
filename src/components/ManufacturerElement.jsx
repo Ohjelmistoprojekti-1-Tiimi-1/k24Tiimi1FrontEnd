@@ -44,9 +44,9 @@ const ManufacturerElement = ({ manufacturer }) => {
 
     return (
         <>
-            <Typography variant="h3">{manufacturer.name}</Typography>
+            <Typography variant="h4">{manufacturer.name}</Typography>
             <Typography variant="h5">Country: {manufacturer.country}</Typography>
-            <Typography variant="h5">Company ID: {manufacturer.businessIdentityCode} </Typography>
+            <Typography variant="h5">Business ID: {manufacturer.businessIdentityCode} </Typography>
             <Typography variant="h4">All products by {manufacturer.name}: </Typography>
 
             <div className="ag-theme-material" style={{ height: 600 }}>

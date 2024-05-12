@@ -3,7 +3,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import { groupBy, sumBy } from "lodash";
-import { Button, Snackbar } from "@mui/material";
+import { Button, Snackbar, Typography } from "@mui/material";
 import ReservationContext from "./ReservationContext";
 import { newReservation } from "../petshopapi";
 import { Link } from "react-router-dom";
@@ -61,6 +61,7 @@ const ReservationProducts = () => {
                 });
                 newReservation(reservation)
                     .then(() => sessionStorage.removeItem("reservation"))
+                    .then(() => window.location.reload())
                     .catch(err => console.error(err));
             }
         }
@@ -68,6 +69,7 @@ const ReservationProducts = () => {
 
     return (
         <>
+            <Typography variant="h4">Current reservation</Typography>
             <div className="ag-theme-material" style={{ height: 600 }}>
                 <AgGridReact
                     rowData={procucts}

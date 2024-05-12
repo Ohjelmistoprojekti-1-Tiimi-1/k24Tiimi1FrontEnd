@@ -1,19 +1,34 @@
-import { useState, useContext } from "react";
-import { Button, Box, Typography, Snackbar } from "@mui/material";
-import { Link } from "react-router-dom";
-import { newReservation } from "../petshopapi";
+import { useState } from "react";
+import { Box, Tab } from "@mui/material";
+import { TabList, TabContext, TabPanel } from '@mui/lab';
+
 import ReservationProducts from "./ReservationProducts";
-import ReservationContext from "./ReservationContext";
+
 
 export default function Reservations() {
+    const [value, setValue] = useState('1');
 
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     return (
         <>
-            <Box>
-                <Typography variant="h3">Current reservation</Typography>
-                <ReservationProducts />
-            </Box>
+            <TabContext value={value}>
+                <Box>
+                    <TabList onChange={handleChange} aria-label="lab API tabs example">
+                        <Tab label="Your reservations" value="1" />
+                        <Tab label="New Reservation" value="2" />
+                    </TabList>
+                    <TabPanel value="1">
+                        Your reservations
+                    </TabPanel>
+                    <TabPanel value="2">
+                        <ReservationProducts />
+                    </TabPanel>
+
+                </Box>
+            </TabContext>
         </>
     );
 };

@@ -28,7 +28,8 @@ const CustomerReservations = () => {
     ]);
 
     useEffect(() => {
-        handleReservationFetch();
+        if (sessionStorage.getItem("jwt"))
+            handleReservationFetch();
     }, []);
 
     const handleReservationFetch = () => {

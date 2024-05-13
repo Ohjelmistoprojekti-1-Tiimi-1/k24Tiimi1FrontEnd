@@ -4,7 +4,6 @@ import ProductCatalog from "./ProductCatalogue.jsx"
 import { Typography } from "@mui/material";
 
 function FrontPage() {
-
     const [products, setProducts] = useState([]);
 
     useEffect(() => {

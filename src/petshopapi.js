@@ -47,7 +47,7 @@ export const newReservation = async (reservation) => {
 };
 
 // fetch all reservations for the currently logged in customer
-export const fetchReservations = async (reservation) => {
+export const fetchReservations = async () => {
     const response = await fetch(import.meta.env.VITE_API_RESERVATIONS, {
         method: "get",
         headers: {
@@ -61,7 +61,7 @@ export const fetchReservations = async (reservation) => {
 };
 
 // fetch products with reservation id
-export const fetchReservationProducts = async (reservation) => {
+export const fetchReservationProducts = async () => {
     const response = await fetch(import.meta.env.VITE_API_RESERVATIONPRODUCTS, {
         method: "get",
         headers: {

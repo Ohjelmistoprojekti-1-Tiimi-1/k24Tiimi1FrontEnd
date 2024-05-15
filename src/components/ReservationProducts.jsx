@@ -3,7 +3,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import { groupBy, sumBy } from "lodash";
-import { Button, Snackbar, Typography } from "@mui/material";
+import { Button, Snackbar, Typography, Stack } from "@mui/material";
 import ReservationContext from "./ReservationContext";
 import { newReservation } from "../petshopapi";
 import { Link } from "react-router-dom";
@@ -34,10 +34,10 @@ const ReservationProducts = () => {
                 </Button>
             , width: 120
         },
-        { field: "count", cellStyle: {textAlign: 'center'}, filter: true, width:110 },
+        { field: "count", cellStyle: { textAlign: 'center' }, filter: true, width: 110 },
         {
             cellRenderer: params =>
-                <Button size="small"  onClick={() => changeReservatioinProductCount(params.data.productId, 1)}>
+                <Button size="small" onClick={() => changeReservatioinProductCount(params.data.productId, 1)}>
                     ➕
                 </Button>
             , width: 120
@@ -107,8 +107,12 @@ const ReservationProducts = () => {
 
     return (
         <>
-            <Typography variant="h4">Current reservation</Typography>
-            <Button variant="contained" onClick={reserveProducts}>Reserve selected products</Button>
+            <Stack direction="row">
+                <Typography variant="h4">Current reservation</Typography>
+                {reservationProducts.length > 0 &&
+                    <Button variant="contained" onClick={reserveProducts} sx={{ position: "absolute", right: "5%" }}>Reserve selected products</Button>
+                }
+            </Stack>
             <div className="ag-theme-material" style={{ height: 600 }}>
                 <AgGridReact
                     rowData={procucts}

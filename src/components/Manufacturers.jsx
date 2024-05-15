@@ -23,35 +23,33 @@ const Manufacturer = () => {
 
     return (
         <>
-        <Typography variant="h5" sx={{ p: 2 }}>
-        Click on the manufacturer to view their products:
-      </Typography>
-        <Box sx={{ p: 2 }}>
+            <Typography variant="h5" sx={{ p: 2 }}>
+                Click on the manufacturer to view their products:
+            </Typography>
+            <Box sx={{ p: 2 }}>
 
-            <Stack direction="row" spacing={2} mt={2} alignItems="center">
-                {manufacturers.map(manufacturer => {
-                    return (
-                        <Card sx={{ maxWidth: 345 }} key={manufacturer._links.manufacturer.href} onClick={() => setManufacturer(manufacturer)}>
-                            <CardActionArea>
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {manufacturer.name}
-                                    </Typography>
-                                    
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    );
-                })}
-            </Stack>
+                <Stack direction="row" spacing={2} mt={2} alignItems="center">
+                    {manufacturers.map(manufacturer => {
+                        return (
+                            <Card sx={{ maxWidth: 345 }} key={manufacturer._links.manufacturer.href} onClick={() => setManufacturer(manufacturer)}>
+                                <CardActionArea>
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            {manufacturer.name}
+                                        </Typography>
 
-            {manufacturer &&
-                <ManufacturerElement manufacturer={manufacturer} />
-            }
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        );
+                    })}
+                </Stack>
 
-
-
-        </Box>
+                {manufacturer &&
+                    <ManufacturerElement manufacturer={manufacturer} />
+                }
+                
+            </Box>
         </>
     );
 };

@@ -25,9 +25,14 @@ export default function Login() {
   const [message, setMessage] = useState("");
 
   const [passwordVisible, setPasswordVisible] = useState(false);
-
+  const [passwordVisible2, setPasswordVisible2] = useState(false);
+  
   const togglePasswordVisibility = () => {
     setPasswordVisible((prev) => !prev);
+  };
+
+  const togglePasswordVisibility2 = () => {
+    setPasswordVisible2((prev) => !prev);
   };
 
   useEffect(() => {
@@ -153,7 +158,6 @@ export default function Login() {
       <Stack direction="row" sx={{ pl: 2 }} spacing={2}>
         <TextField
           value={logins.username}
-          // id="outlined-basic"
           label="Username"
           placeholder="Username"
           onChange={(e) => setLogins({ ...logins, username: e.target.value })}
@@ -161,7 +165,6 @@ export default function Login() {
         <TextField
           type={passwordVisible ? 'text' : 'password'}
           value={logins.password}
-          // id="outlined-basic"
           label="Password"
           placeholder="Password"
           onChange={(e) => setLogins({ ...logins, password: e.target.value })}
@@ -180,21 +183,19 @@ export default function Login() {
       <Stack direction="row" sx={{ pl: 2 }} spacing={2}>
         <TextField
           value={signups.username}
-          // id="outlined-basic"
           label="Username"
           placeholder="Username"
           onChange={(e) => setSignups({ ...signups, username: e.target.value })}
         />
         <TextField
-          type={passwordVisible ? 'text' : 'password'}
+          type={passwordVisible2 ? 'text' : 'password'}
           value={signups.password}
-          // id="outlined-basic"
           label="Password"
           placeholder="Password"
           onChange={(e) => setSignups({ ...signups, password: e.target.value })}
         />
-        <IconButton onClick={togglePasswordVisibility} edge="end">
-        {passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+        <IconButton onClick={togglePasswordVisibility2} edge="end">
+        {passwordVisible2 ? <VisibilityOffIcon /> : <VisibilityIcon />}
       </IconButton>
         <Button variant="contained" onClick={handleSignupClick}>
           Sign up
